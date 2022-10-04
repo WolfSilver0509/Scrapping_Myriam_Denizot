@@ -33,7 +33,7 @@ def get_all_links_book_to_category(soup):
 
 
 def info_extract(links_categorys,csv_created):
-    print(csv_created)
+    #print(csv_created)
     already_init = 0
     # Extraire les informations de chaques livres dans horror
     for links_cats in links_categorys:
@@ -63,7 +63,7 @@ def info_extract(links_categorys,csv_created):
                         "review_rating": review_rating,
                         "image": image['src'],
                         "number_available": number_available}
-        # print(book_of_catg) #"number_available":number_available}
+
         #all_books_categorys.append(book_of_catg)
         en_tete_catg = ['product_page_url',
                         'title',
@@ -73,7 +73,7 @@ def info_extract(links_categorys,csv_created):
                         'price_excluding_tax',
                         'category',
                         'review_rating',
-                        'image'
+                        'image',
                         'number_available']
 
         # Créer un nouveau fichier pour écrire dans le fichier appelé « data.csv
@@ -90,7 +90,8 @@ def info_extract(links_categorys,csv_created):
                                         price_excluding_tax,
                                         category,
                                         review_rating,
-                                        image['src']])
+                                        image['src'],
+                                        number_available])
             already_init = 1
         else:
             with open('category/' + category + '/data_' + category + '.csv', 'a', encoding="utf-8") as fichier_csv:
@@ -104,7 +105,8 @@ def info_extract(links_categorys,csv_created):
                                         price_excluding_tax,
                                         category,
                                         review_rating,
-                                        image['src']])
+                                        image['src'],
+                                        number_available])
 
 
         image_url = get_link_image(image, 3)
