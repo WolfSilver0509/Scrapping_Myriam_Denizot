@@ -73,7 +73,7 @@ def etape1(url_page_produit):
 
         with open('Livre1/data_' + category + '.csv', 'w') as fichier_csv:
             # Créer un objet writer (écriture) avec ce fichier
-            writer = csv.writer(fichier_csv, delimiter=',')
+            writer = csv.writer(fichier_csv, delimiter=';')
             writer.writerow(en_tete)
             writer.writerow([product_page_url,
                              title,
