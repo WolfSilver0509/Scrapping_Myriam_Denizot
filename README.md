@@ -14,7 +14,7 @@ Voici la liste des créations utilisées pour ce projet :
 
 
 
-* Python : Version 3.9 (minimum requis pour faire marcher le code)
+* Python : Version 3.9 (minimum requis pour faire marcher le script)
 
 
 
@@ -41,7 +41,7 @@ Voici la liste des créations utilisées pour ce projet :
 
 
 :computer: ### Python
-Vous devez avoir Python, version 3.9 minimum, installé sur votre ordinateur ( si ce n'est pas le cas vous pouvez le télécharger [ici - Python](https://www.python.org/downloads/).
+Vous devez avoir Python, version 3.9 minimum, installé sur votre ordinateur (si ce n'est pas le cas vous pouvez le télécharger [ici - Python](https://www.python.org/downloads/))
 
 
 
@@ -93,7 +93,7 @@ Pour cela il nous faut récupérer le chemin du dossier:
 ```
 C:\Users\wolf\Desktop\DemoScrapping\envVirtuel\Scripts\activate
 ```
-:point_right: Si tout va bien vous devez voir apparaître un (env) a côté de votre chemin d'accès, comme ceci
+:point_right: Si tout va bien vous devez voir apparaître un (env) à côté de votre chemin d'accès, comme ceci
 ```
 (env) C:\Users\wolf\Desktop\DemoScrapping>
 ```
