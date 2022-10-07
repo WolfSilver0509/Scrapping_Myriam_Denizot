@@ -88,13 +88,13 @@ def etape3(links_catgs):
         nb_page = 1
         if index_page:
             nb_page = index_page.text.rsplit('of', 1).pop()
-            print(nb_page)
+            #print(nb_page)
         for n in range(1, int(nb_page)+1):
             if n == 1:
                 url_category = link
             else:
                 url_category = link.replace("index.html", "page-" + str(n) + '.html')
-            print(url_category)
+            #print(url_category)
             all_links_category = get_all_links_book_to_category(get_url_category(url_category))
 
             info_extract(all_links_category, n > 1)
@@ -122,6 +122,9 @@ elif question_1.startswith('n') or question_1 == '':
         question_3 = question_3.strip().lower()
         if question_3.startswith('o'):
             print(etape3(links_catgs))
+            print(" C'est Finis ! ")
+            print(
+                " ⚠️  ⚠️ Pour accéder au autres démonstrations de scrapping , veuillez relancer l'exécution du scrypte Python. ⚠️  ⚠️ ")
         elif question_3.startswith('n') or question_3 == '':
             print("Au revoir")
             print(
