@@ -35,8 +35,8 @@ def info_extract(links_horror,all_books_horror):
         table = book_soup.findAll('td')
         title = book_soup.find('h1').text
         universal_product_code = table[0].text
-        price_including_tax = table[2].text.replace('£', '').replace('Â', '')
-        price_excluding_tax = table[3].text.replace('£', '').replace('Â', '')
+        price_including_tax = table[2].text.replace('£', '£').replace('Â', '')
+        price_excluding_tax = table[3].text.replace('£', '£').replace('Â', '')
         number_available = table[5].text.removeprefix('In stock (').removesuffix('available)')
         product_description_unicode = book_soup.select_one('article > p').text
         product_description = unidecode.unidecode(product_description_unicode)
@@ -57,6 +57,8 @@ def info_extract(links_horror,all_books_horror):
         # "number_available":number_available}
         all_books_horror.append(book_horror)
     return all_books_horror
+
+
 
 def etape2(url_horror):
     # -- Création variable : un tableau avec tous les livres dedans
@@ -84,6 +86,7 @@ def etape2(url_horror):
         writer = csv.writer(fichier_csv, delimiter=';')
         writer.writerow(en_tete_horror)
 
+
         # Boucle en passant les param's !
         for books_horror in all_books_horror:
             writer.writerow([books_horror['product_page_url'],
@@ -94,7 +97,7 @@ def etape2(url_horror):
                              books_horror['price_excluding_tax'],
                              books_horror['category'],
                              books_horror['review_rating'],
-                             books_horror['image'],
+                             get_link_image(books_horror, 2),
                              books_horror['number_available']])
 
 
