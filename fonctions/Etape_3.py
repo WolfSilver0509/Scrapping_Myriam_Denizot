@@ -8,9 +8,6 @@ from .Image import get_link_image
 
 
 
-
-
-
 def get_url_category(url_category):  # fonction recupére la page catégorie horror
     # Telechargement de la page url horror
     page = requests.get(url_category)
@@ -37,14 +34,16 @@ def info_extract(links_categorys,csv_created):
     already_init = 0
     # Extraire les informations de chaques livres dans horror
     for links_cats in links_categorys:
-        response_info_catgs = requests.get(links_cats).text
+        response = requests.get(links_cats)
+        response.encoding = 'UTF-8'
+        response_info_catgs = response.text
         book_soup = bs(response_info_catgs, "lxml")
         product_page_url = links_cats
         table = book_soup.findAll('td')
         title = book_soup.find('h1').text
         universal_product_code = table[0].text
-        price_including_tax = table[2].text.replace('£', '').replace('Â', '')
-        price_excluding_tax = table[3].text.replace('£', '').replace('Â', '')
+        price_including_tax = table[2].text.replace('£', '£').replace('Â', '')
+        price_excluding_tax = table[3].text.replace('£', '£').replace('Â', '')
         number_available = table[5].text.removeprefix('In stock (').removesuffix('available)')
         product_description_unicode = book_soup.select_one('article > p').text
         product_description = unidecode.unidecode(product_description_unicode)
@@ -90,7 +89,7 @@ def info_extract(links_categorys,csv_created):
                                         price_excluding_tax,
                                         category,
                                         review_rating,
-                                        image['src'],
+                                        get_link_image(image, 3),
                                         number_available])
             already_init = 1
         else:
@@ -105,7 +104,7 @@ def info_extract(links_categorys,csv_created):
                                         price_excluding_tax,
                                         category,
                                         review_rating,
-                                        image['src'],
+                                        get_link_image(image, 3),
                                         number_available])
 
 
