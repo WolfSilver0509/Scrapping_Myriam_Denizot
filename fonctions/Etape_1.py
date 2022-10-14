@@ -19,8 +19,8 @@ def etape1(url_page_produit):
         table = soup.findAll('td')
         title = soup.find('h1').text
         universal_product_code = table[0].text
-        price_including_tax = table[2].text.replace('£', '').replace('Â', '')
-        price_excluding_tax = table[3].text.replace('£', '').replace('Â', '')
+        price_including_tax = table[2].text.replace('£', '£').replace('Â', '')
+        price_excluding_tax = table[3].text.replace('£', '£').replace('Â', '')
         number_available = table[5].text.removeprefix('In stock (').removesuffix('available)')
         # number_available = (str(table[5]).text).removeprefix('In stock (').removesuffix('available)')
         # number_available = str((table[5]).text).removeprefix('In stock (').removesuffix('available)')
@@ -40,7 +40,7 @@ def etape1(url_page_produit):
                 "price_excluding_tax": price_excluding_tax,
                 "category": category,
                 "review_rating": review_rating,
-                "image": image,
+                "image": get_link_image(soup, 1),
                 "number_available": number_available}
         # "number_available":number_available}
 
@@ -54,7 +54,7 @@ def etape1(url_page_produit):
     print("💸 Le prix en excluant les taxes :", price_excluding_tax)
     print("💸 La catégories du livre est :", category)
     print("📊 La note du livre :", review_rating, " ⭐")
-    print("📷 L'image du livre ' :", image['src']),
+    print("📷 L'image du livre ' :", get_link_image(soup, 1)),
     print("📷 Le stock disponible du livre :", number_available)
 
     # Créer une liste pour les en-têtes
@@ -83,7 +83,7 @@ def etape1(url_page_produit):
                              price_excluding_tax,
                              category,
                              review_rating,
-                             image['src'],
+                             get_link_image(soup, 1),
                              number_available])
 
     print(csv_createur())
