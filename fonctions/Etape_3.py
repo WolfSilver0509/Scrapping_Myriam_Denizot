@@ -42,8 +42,8 @@ def info_extract(links_categorys,csv_created):
         table = book_soup.findAll('td')
         title = book_soup.find('h1').text
         universal_product_code = table[0].text
-        price_including_tax = table[2].text.replace('£', '£').replace('Â', '')
-        price_excluding_tax = table[3].text.replace('£', '£').replace('Â', '')
+        price_including_tax = table[2].text #.replace('£', '£').replace('Â', '')
+        price_excluding_tax = table[3].text #.replace('£', '£').replace('Â', '')
         number_available = table[5].text.removeprefix('In stock (').removesuffix('available)')
         product_description_unicode = book_soup.select_one('article > p').text
         product_description = unidecode.unidecode(product_description_unicode)
@@ -77,7 +77,7 @@ def info_extract(links_categorys,csv_created):
 
         # Créer un nouveau fichier pour écrire dans le fichier appelé « data.csv
         if (already_init == 0 and not csv_created):
-            with open('category/' + category + '/data_' + category + '.csv', 'w', encoding="utf-8") as fichier_csv:
+            with open('category/' + category + '/data_' + category + '.csv', 'w') as fichier_csv:
 
                 writer = csv.writer(fichier_csv, delimiter=';')
                 writer.writerow(en_tete_catg)
@@ -93,7 +93,7 @@ def info_extract(links_categorys,csv_created):
                                         number_available])
             already_init = 1
         else:
-            with open('category/' + category + '/data_' + category + '.csv', 'a', encoding="utf-8") as fichier_csv:
+            with open('category/' + category + '/data_' + category + '.csv', 'a') as fichier_csv:
 
                 writer_object = csv.writer(fichier_csv, delimiter=';')
                 writer_object.writerow([product_page_url,
